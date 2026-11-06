@@ -109,6 +109,10 @@ function construir() {
 
   if (existsSync(rutaEnv)) Object.assign(vars, leerEnv(rutaEnv));
 
+  for (const [clave, valor] of Object.entries(process.env)) {
+    if (typeof valor === 'string' && valor.trim()) vars[clave] = valor;
+  }
+
   const faltan = OBLIGATORIAS.filter((clave) => !vars[clave]?.trim());
   if (faltan.length) {
     console.error('\n  Faltan estas variables en .env: ' + faltan.join(', '));
