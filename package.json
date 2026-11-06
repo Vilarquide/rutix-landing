@@ -1,0 +1,12 @@
+{
+  "name": "landing-rutas",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page estática. Los datos salen del .env; `npm run build` genera dist/.",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --serve",
+    "start": "node build.mjs --serve"
+  }
+}

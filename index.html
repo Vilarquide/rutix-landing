@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{APP_NAME}} — Rutas de reparto optimizadas al mínimo coste</title>
+<meta name="description" content="{{META_DESCRIPTION}}">
+
+<!-- ============================================================
+     EL NOMBRE Y EL CONTACTO VIENEN DEL FICHERO .env
+     (npm run build los inyecta aquí: no hay que editar nada a mano)
+     ============================================================ -->
+<meta name="theme-color" content="#14171c">
+<meta name="color-scheme" content="light">
+<link rel="icon" href="{{FAVICON}}" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="{{APP_NAME}} — Rutas de reparto optimizadas">
+<meta property="og:description" content="{{OG_DESCRIPTION}}">
+<meta property="og:image" content="{{OG_IMAGE}}">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="assets/fonts/barlow-semi-condensed-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/barlow-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Marca de "hay JS": sin ella el contenido se ve entero aunque falle el script -->
+<script>document.documentElement.className += ' js';</script>
+<link rel="stylesheet" href="assets/css/styles.css">
+</head>
+
+<body>
+
+<a class="skip" href="#top">Saltar al contenido</a>
+
+<!-- Barra de progreso de lectura -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ==========================================================
+     NAVEGACIÓN
+     ========================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner">
+
+    <!-- LOGO: sustituye el SVG de abajo por el tuyo (assets/img/logo.svg) -->
+    <a class="nav__brand" href="#top" aria-label="Inicio">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="20" height="20" fill="none">
+          <path d="M6 24c4.5 0 5.5-16 10-16s5.5 16 10 16" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="24" r="3" fill="currentColor"/>
+          <circle cx="26" cy="24" r="3" fill="currentColor"/>
+        </svg>
+      </span>
+      <!-- NOMBRE: viene de APP_NAME en .env -->
+      <span class="nav__name">{{APP_NAME}}</span>
+    </a>
+
+    <nav class="nav__links" aria-label="Secciones">
+      <a href="#producto">Producto</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+
+    <div class="nav__actions">
+      <!-- CAMBIA: enlace de acceso / contacto -->
+      <a class="nav__link-quiet" href="#contacto">Contacto</a>
+      <a class="btn btn--primary btn--sm" href="#contacto">Pedir demo</a>
+      <button class="nav__burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu-movil">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <div class="nav__menu" id="menu-movil">
+    <a href="#producto">Producto</a>
+    <a href="#como">Cómo funciona</a>
+    <a href="#faq">Preguntas</a>
+    <a href="#contacto">Contacto</a>
+    <a class="btn btn--primary" href="#contacto">Pedir demo</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- ========================================================
+       HERO
+       ======================================================== -->
+  <section class="hero">
+    <div class="wrap">
+      <div class="hero__grid">
+
+        <div class="hero__copy">
+          <p class="kicker reveal">optimización de rutas de reparto</p>
+
+          <!-- CAMBIA: titular -->
+          <h1 class="hero__title reveal" data-split>
+            De tu Excel a la ruta óptima.
+          </h1>
+
+          <p class="hero__lead reveal" style="--d:.12s">
+            Sube el archivo de pedidos y obtén las rutas de tu flota
+            <strong>sobre carretera real</strong>: capacidades, ventanas horarias
+            y coste por camión respetados. De horas de planificación a un clic.
+          </p>
+
+          <div class="hero__cta reveal" style="--d:.18s">
+            <!-- CAMBIA: destino de los botones (formulario, mailto, demo...) -->
+            <a class="btn btn--primary btn--lg" href="#contacto">Pedir demo</a>
+            <a class="btn btn--ghost btn--lg" href="#como">Ver cómo funciona</a>
+          </div>
+
+          <p class="hero__note reveal" style="--d:.24s">
+            sin permanencia · se instala en tu servidor · los datos no salen de tu infraestructura
+          </p>
+        </div>
+
+        <!-- ----------------------------------------------------------
+             TABLERO DE DESPACHO (imagen principal del hero)
+             Coloca tu captura en assets/img/hero-dashboard.png y tapa
+             el mockup vectorial automáticamente.
+             ---------------------------------------------------------- -->
+        <div class="panel reveal" data-parallax="0.05">
+          <div class="panel__bar">
+            <i></i><i></i><i></i>
+            <b>planificador · rutas del día</b>
+            <span class="panel__tag">4 vehículos</span>
+          </div>
+
+          <div class="panel__body">
+            <span class="panel__ph">Coloca aquí tu captura · <b>hero-dashboard.png</b></span>
+            <img class="panel__img" src="assets/img/hero-dashboard.png" alt="Captura de la plataforma con el mapa de rutas optimizadas">
+
+            <!-- Mockup vectorial animado: se ve si todavía no has puesto la imagen -->
+            <svg class="panel__art" viewBox="0 0 900 560" fill="none" role="img" aria-label="Vista previa del mapa de rutas">
+              <defs>
+                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#ffc457"/><stop offset="1" stop-color="#f5a524"/></linearGradient>
+                <linearGradient id="g2" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d27b"/><stop offset="1" stop-color="#12a150"/></linearGradient>
+                <linearGradient id="g3" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#6aa6ff"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+                <linearGradient id="g4" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#b18cff"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient>
+                <filter id="glow" x="-40%" y="-40%" width="180%" height="180%">
+                  <feGaussianBlur stdDeviation="6" result="b"/>
+                  <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+                </filter>
+              </defs>
+
+              <rect width="900" height="560" fill="#14171c"/>
+
+              <g stroke="#242b35" stroke-width="7" stroke-linecap="round" opacity=".9">
+                <path d="M0 160h900M0 340h900M0 470h900"/>
+                <path d="M240 0v560M520 0v560M740 0v560"/>
+                <path d="M120 60l180 160 210-50 170 150 200-80"/>
+                <path d="M60 500l200-70 220 110 180-50 190 80"/>
+              </g>
+              <g stroke="#1b2027" stroke-width="2">
+                <path d="M120 0v560M360 0v560M620 0v560M830 0v560"/>
+                <path d="M0 90h900M0 250h900M0 410h900"/>
+              </g>
+
+              <g filter="url(#glow)">
+                <path class="ruta r1" d="M170 480 L260 400 L380 360 L520 300 L700 250 L830 210" stroke="url(#g1)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="ruta r2" d="M170 480 L190 300 L320 210 L320 110 L470 90" stroke="url(#g2)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="ruta r3" d="M170 480 L210 360 L360 330 L540 300 L690 320 L840 360" stroke="url(#g3)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path class="ruta r4" d="M170 480 L170 360 L260 250 L170 150 L280 80" stroke="url(#g4)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+
+              <g class="pin pin--depot" transform="translate(170,480)">
+                <circle r="14" fill="#14171c" stroke="#ffffff" stroke-width="3"/>
+                <path d="M-6 0h12M-6 0l3-6h6l3 6M-3-6V-9h6V-6" stroke="#fff" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+              </g>
+
+              <g class="pin" style="--i:1" transform="translate(520,300)"><circle r="9" fill="#f5a524" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:2" transform="translate(700,250)"><circle r="9" fill="#f5a524" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:3" transform="translate(830,210)"><circle r="9" fill="#f5a524" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:4" transform="translate(320,210)"><circle r="9" fill="#12a150" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:5" transform="translate(470,90)"><circle r="9" fill="#12a150" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:6" transform="translate(540,300)"><circle r="9" fill="#3b82f6" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:7" transform="translate(840,360)"><circle r="9" fill="#3b82f6" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:8" transform="translate(260,250)"><circle r="9" fill="#8b5cf6" stroke="#14171c" stroke-width="3"/></g>
+              <g class="pin" style="--i:9" transform="translate(280,80)"><circle r="9" fill="#8b5cf6" stroke="#14171c" stroke-width="3"/></g>
+            </svg>
+          </div>
+
+          <ul class="panel__legend" data-stagger>
+            <li><i style="--c:var(--r1)"></i>Camión 1 · <b>41 km</b> · 6 paradas</li>
+            <li><i style="--c:var(--r2)"></i>Camión 2 · <b>38 km</b> · 5 paradas</li>
+            <li><i style="--c:var(--r3)"></i>Camión 3 · <b>27 km</b> · 4 paradas</li>
+            <li><i style="--c:var(--r4)"></i>Camión 4 · <b>22 km</b> · 3 paradas</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FRANJA MANIFIESTO — CAMBIA las cifras por las tuyas reales -->
+      <div class="manifest reveal" data-stagger>
+        <div class="manifest__item">
+          <span class="manifest__num" data-count="27" data-suffix="%">0%</span>
+          <span class="manifest__label">menos kilómetros por ruta</span>
+        </div>
+        <div class="manifest__item">
+          <span class="manifest__num" data-count="9" data-suffix=" s">0 s</span>
+          <span class="manifest__label">para resolver cientos de pedidos</span>
+        </div>
+        <div class="manifest__item">
+          <span class="manifest__num" data-count="31" data-suffix="%">0%</span>
+          <span class="manifest__label">menos camiones en ruta</span>
+        </div>
+        <div class="manifest__item">
+          <span class="manifest__num" data-count="100" data-suffix="%">0%</span>
+          <span class="manifest__label">de pedidos con ventana cumplida</span>
+        </div>
+      </div>
+      <p class="manifest__nota reveal">Datos de ejemplo: sustitúyelos por los resultados de tus propios clientes antes de publicar.</p>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PRODUCTO — tablero
+       ======================================================== -->
+  <section class="section" id="producto">
+    <div class="wrap">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>Todo lo que hace falta para planificar el reparto del día.</h2>
+        <p class="head__sub">Un solo lugar: importas los pedidos, el motor calcula la mejor
+          distribución de flota y el equipo trabaja sobre ella.</p>
+      </header>
+
+      <div class="board">
+
+        <article class="cell cell--lead reveal">
+          <div>
+            <span class="cell__label">motor</span>
+            <h3 class="cell__title" style="margin-top:12px">Rutas reales, no aproximaciones.</h3>
+            <p class="cell__text" style="margin-top:12px">Las distancias salen de la carretera real, no de
+              líneas rectas entre puntos. El solver reparte la carga entre camiones respetando
+              capacidad, ventanas horarias y el coste de cada vehículo.</p>
+            <ul class="ticks" data-stagger style="margin-top:20px">
+              <li>Matriz de distancias sobre el mapa de tu zona</li>
+              <li>Coste por camión, no solo kilómetros</li>
+              <li>Rutas equilibradas entre conductores</li>
+            </ul>
+          </div>
+          <div class="cell__art">
+            <div class="mxnum" id="mxnum" aria-hidden="true"></div>
+          </div>
+        </article>
+
+        <article class="cell reveal" style="--d:.06s">
+          <span class="cell__label">entrada</span>
+          <h3 class="cell__title">Sube tu Excel y listo.</h3>
+          <p class="cell__text">El mismo archivo de siempre: referencias, clientes,
+            ventanas y peso. Cada fila se valida y te avisa de lo que no se puede servir.</p>
+          <div class="cell__art">
+            <div class="mini-excel" data-stagger aria-hidden="true">
+              <div class="mini-excel__row mini-excel__row--head"><span>pedido</span><span>cliente</span><span>kg</span></div>
+              <div class="mini-excel__row"><span>P-1042</span><span>Almacén Norte</span><span>180</span></div>
+              <div class="mini-excel__row"><span>P-1043</span><span>Distribuciones SL</span><span>640</span></div>
+              <div class="mini-excel__row mini-excel__row--warn"><span>P-1045</span><span>Cadena Norte</span><span>910</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell reveal" style="--d:.12s">
+          <span class="cell__label">flota</span>
+          <h3 class="cell__title">Cada camión con sus límites.</h3>
+          <p class="cell__text">Capacidad, tipo de vehículo, coste por km y turno.
+            Los pedidos que no caben se avisan, no se pierden.</p>
+          <div class="cell__art">
+            <div class="mini-flota" aria-hidden="true">
+              <div class="mini-flota__row">
+                <div class="camion"><span class="camion__box"></span><span class="camion__cab"></span></div>
+                <span class="mini-flota__bar"><i style="--w:86%"></i></span>
+                <span>1.240/1.500 kg</span>
+              </div>
+              <div class="mini-flota__row">
+                <div class="camion"><span class="camion__box"></span><span class="camion__cab"></span></div>
+                <span class="mini-flota__bar"><i style="--w:64%"></i></span>
+                <span>960/1.500 kg</span>
+              </div>
+              <div class="mini-flota__row">
+                <div class="camion"><span class="camion__box"></span><span class="camion__cab"></span></div>
+                <span class="mini-flota__bar"><i style="--w:41%"></i></span>
+                <span>620/1.500 kg</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell cell--wide reveal" style="--d:.18s">
+          <span class="cell__label">seguimiento</span>
+          <h3 class="cell__title">El mapa en vivo, parada a parada.</h3>
+          <p class="cell__text">Hora de llegada de cada entrega, avisos de demora y el
+            estado de cada unidad en una sola pantalla.</p>
+          <div class="cell__art">
+            <div class="mini-mapa" aria-hidden="true">
+              <svg viewBox="0 0 320 180" fill="none">
+                <g stroke="#e3e6ec" stroke-width="6" stroke-linecap="round">
+                  <path d="M0 50h320M0 130h320M80 0v180M230 0v180"/>
+                </g>
+                <g stroke="#eef1f5" stroke-width="2">
+                  <path d="M40 0v180M160 0v180M290 0v180M0 90h320M0 160h320"/>
+                </g>
+                <path d="M30 160 L80 128 L140 142 L200 96 L230 50 L300 26" stroke="#f5a524" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+                <circle cx="30" cy="160" r="6" fill="#14171c"/>
+                <circle cx="200" cy="96" r="5" fill="#f5a524"/>
+                <circle cx="300" cy="26" r="5" fill="#f5a524"/>
+                <circle cx="230" cy="50" r="5" fill="#12a150"/>
+              </svg>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.06s">
+          <span class="cell__label">dirección</span>
+          <h3 class="cell__title">Los números, en una frase.</h3>
+          <p class="cell__text">Coste total, kilómetros, tiempo en ruta y desviación
+            frente a tu planificación manual, siempre comparados.</p>
+          <div class="cell__art">
+            <div class="mini-kpi" aria-hidden="true">
+              <span style="--h:42%"></span><span style="--h:64%"></span>
+              <span style="--h:38%"></span><span class="is-on" style="--h:82%"></span>
+              <span class="is-on" style="--h:71%"></span><span class="is-on" style="--h:58%"></span>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.12s">
+          <span class="cell__label">equipo</span>
+          <h3 class="cell__title">Cada quien con su vista.</h3>
+          <p class="cell__text">Planificador, responsable de flota y conductor: cada rol
+            ve lo que le toca, con agenda e incidencias propias.</p>
+          <div class="cell__art">
+            <div class="mini-roles" aria-hidden="true">
+              <span class="rol rol--on">PL</span><span class="rol">FL</span><span class="rol">CO</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CÓMO FUNCIONA — tres pasos
+       ======================================================== -->
+  <section class="section section--dark" id="como">
+    <div class="wrap">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>De tu Excel a la ruta óptima en tres pasos.</h2>
+      </header>
+
+      <div class="story" id="story">
+        <!-- Visual pegajoso (izquierda en escritorio) -->
+        <div class="story__stage">
+          <div class="story__sticky">
+            <div class="stage-frame">
+
+              <!-- Paso 1 -->
+              <div class="stage-scene is-on" data-scene="0">
+                <div class="scene scene--excel">
+                  <div class="scene__bar"><i></i><i></i><i></i><b>pedidos_semana_12.xlsx</b></div>
+                  <table class="xl">
+                    <tbody>
+                      <tr><td>Pedido</td><td>Cliente</td><td>Ventana</td><td>Kg</td></tr>
+                      <tr><td>P-1042</td><td>Almacén Norte</td><td>09:00–12:00</td><td>180</td></tr>
+                      <tr><td>P-1043</td><td>Distribuciones SL</td><td>10:00–13:00</td><td>640</td></tr>
+                      <tr><td>P-1044</td><td>Grupo Peris</td><td>Sin ventana</td><td>120</td></tr>
+                      <tr class="is-warn"><td>P-1045</td><td>Cadena Norte</td><td>08:00–09:00</td><td>910</td></tr>
+                    </tbody>
+                  </table>
+                  <div class="scene__upload"><span class="spinner"></span> 128 pedidos leídos · 1 con aviso</div>
+                </div>
+              </div>
+
+              <!-- Paso 2 -->
+              <div class="stage-scene" data-scene="1">
+                <div class="scene scene--matriz">
+                  <div class="scene__bar"><i></i><i></i><i></i><b>matriz de distancias reales</b></div>
+                  <div class="mx" id="mx"></div>
+                  <div class="scene__legend">128 × 128 pares · solución lista en 9,4 s</div>
+                </div>
+              </div>
+
+              <!-- Paso 3 -->
+              <div class="stage-scene" data-scene="2">
+                <div class="scene scene--mapa">
+                  <div class="scene__bar"><i></i><i></i><i></i><b>rutas del día</b></div>
+                  <div class="scene__map">
+                    <svg viewBox="0 0 460 300" fill="none">
+                      <g stroke="#2a3444" stroke-width="8" stroke-linecap="round">
+                        <path d="M0 80h460M0 210h460M110 0v300M300 0v300"/>
+                      </g>
+                      <g stroke="#212a37" stroke-width="2">
+                        <path d="M60 0v300M200 0v300M380 0v300M0 140h460M0 260h460"/>
+                      </g>
+                      <path class="s-ruta s-ruta--1" d="M60 260 L110 210 L200 190 L300 170 L400 120" stroke="#f5a524" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path class="s-ruta s-ruta--2" d="M60 260 L100 140 L180 100 L260 60" stroke="#12a150" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <path class="s-ruta s-ruta--3" d="M60 260 L140 260 L250 250 L380 260 L430 240" stroke="#3b82f6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+                      <g class="s-pin s-pin--depot" transform="translate(60,260)"><circle r="12" fill="#0b0e14" stroke="#fff" stroke-width="3"/></g>
+                      <g class="s-pin" transform="translate(300,170)"><circle r="8" fill="#f5a524"/></g>
+                      <g class="s-pin" transform="translate(400,120)"><circle r="8" fill="#f5a524"/></g>
+                      <g class="s-pin" transform="translate(180,100)"><circle r="8" fill="#12a150"/></g>
+                      <g class="s-pin" transform="translate(260,60)"><circle r="8" fill="#12a150"/></g>
+                      <g class="s-pin" transform="translate(250,250)"><circle r="8" fill="#3b82f6"/></g>
+                      <g class="s-pin" transform="translate(430,240)"><circle r="8" fill="#3b82f6"/></g>
+                    </svg>
+                    <ul class="scene__legend-rutas">
+                      <li><i style="--c:#f5a524"></i> Camión 1 · 41 km · 6 paradas</li>
+                      <li><i style="--c:#12a150"></i> Camión 2 · 38 km · 5 paradas</li>
+                      <li><i style="--c:#3b82f6"></i> Camión 3 · 27 km · 4 paradas</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Pasos con scroll (derecha en escritorio) -->
+        <ol class="story__steps">
+          <li class="step is-active" data-step="0">
+            <span class="step__num">1</span>
+            <h3>Importa los pedidos</h3>
+            <p>Sube tu Excel tal cual: referencias, clientes, ventanas horarias y peso.
+              La plataforma valida cada fila y te dice qué no se puede servir y por qué,
+              antes de tocar la flota.</p>
+          </li>
+          <li class="step" data-step="1">
+            <span class="step__num">2</span>
+            <h3>Calcula la solución óptima</h3>
+            <p>El motor obtiene la distancia real entre cada par de puntos y resuelve
+              el reparto de carga entre vehículos. Tú decides cuánto pesa el coste del
+              camión, cuánto esfuerzo se dedica a buscar y si las rutas se equilibran entre conductores.</p>
+          </li>
+          <li class="step" data-step="2">
+            <span class="step__num">3</span>
+            <h3>Trabajan sobre ella</h3>
+            <p>Las rutas ordenadas, con kilómetros, horas y hora de llegada en cada
+              parada, se publican en el panel. Los conductores reciben su agenda y el
+              responsable ve la desviación en tiempo real.</p>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ANTES / DESPUÉS
+       ======================================================== -->
+  <section class="section">
+    <div class="wrap">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>Lo que cuesta planificar a mano.</h2>
+        <p class="head__sub">La misma lista de pedidos, resuelta de dos maneras.</p>
+      </header>
+
+      <div class="versus">
+        <article class="vs vs--old reveal">
+          <header><h3>Planificación manual</h3></header>
+          <ul class="vs__list" data-stagger>
+            <li>Reparto hecho “a ojo”, en el mapa</li>
+            <li>Km y horas estimados en línea recta</li>
+            <li>Camiones que salen medio vacíos</li>
+            <li>Sin control de ventanas horarias</li>
+            <li>4–6 horas al día de trabajo</li>
+          </ul>
+        </article>
+
+        <article class="vs vs--new reveal" style="--d:.1s">
+          <header><h3>Con {{APP_NAME}}</h3><span class="badge">recomendado</span></header>
+          <ul class="vs__list" data-stagger>
+            <li>Solución óptima con criterios de negocio</li>
+            <li>Distancias reales por carretera, no en línea recta</li>
+            <li>Carga equilibrada y coste por camión aplicado</li>
+            <li>Ventanas respetadas y pedidos con aviso claro</li>
+            <li>Unos minutos al día</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TESTIMONIOS
+       ======================================================== -->
+  <section class="section section--alt">
+    <div class="wrap">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>Quien lo usa, no vuelve atrás.</h2>
+      </header>
+
+      <div class="quotes">
+        <figure class="quote reveal">
+          <blockquote>Antes tardábamos media mañana en cerrar el reparto. Ahora lo tenemos
+            montado antes de la reunión y el equipo ya sabe dónde ha ganado tiempo.</blockquote>
+          <figcaption><span class="avatar">LM</span><span><b>Nombre del cliente</b><small>dirección de operaciones · alimentación</small></span></figcaption>
+        </figure>
+        <figure class="quote reveal" style="--d:.08s">
+          <blockquote>Lo que más valoramos es que las distancias son de verdad: se ven los
+            kilómetros reales por carretera, no los de la línea recta entre dos coordenadas.</blockquote>
+          <figcaption><span class="avatar avatar--2">JR</span><span><b>Nombre del cliente</b><small>jefatura de flota · piezas y recambios</small></span></figcaption>
+        </figure>
+        <figure class="quote reveal" style="--d:.16s">
+          <blockquote>Las ventanas horarias nos complicaban el día a día. Ahora el sistema
+            las respeta y, si un pedido es imposible, nos lo dice con motivo.</blockquote>
+          <figcaption><span class="avatar avatar--3">AP</span><span><b>Nombre del cliente</b><small>logística · farmacia</small></span></figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       FAQ
+       ======================================================== -->
+  <section class="section" id="faq">
+    <div class="wrap wrap--narrow">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>Lo que suelen preguntarnos.</h2>
+      </header>
+
+      <div class="faq">
+        <details class="faq__item">
+          <summary>¿Necesito cambiar mi Excel?<i></i></summary>
+          <div class="faq__body"><p>No. Se importa el archivo con el formato que ya usas.
+            Si alguna columna no se reconoce, la plataforma te avisa y te dice cuál falla.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Funciona sin conexión a internet?<i></i></summary>
+          <div class="faq__body"><p>Sí. Puede instalarse en tu propia red o servidor. Los
+            datos de pedidos y rutas nunca salen de tu infraestructura.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cuánto tarda en calcular?<i></i></summary>
+          <div class="faq__body"><p>Con cargas de cientos de pedidos, entre 5 y 20 segundos
+            por optimización. Para mucho más volumen, el cálculo se pone en cola y te
+            avisa cuando está listo.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Qué pasa si un pedido no se puede servir?<i></i></summary>
+          <div class="faq__body"><p>Aparece en una lista aparte con el motivo: capacidad,
+            ventana imposible o distancia. Nunca desaparece en silencio.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Cuánto cuesta?<i></i></summary>
+          <div class="faq__body"><p>El precio se prepara para cada empresa, según el volumen
+            de pedidos, el número de depósitos y las instalaciones que necesite. Cuéntanos tu
+            caso y te enviamos una propuesta cerrada, sin permanencia.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Se integra con nuestro ERP?<i></i></summary>
+          <div class="faq__body"><p>Sí. Hay una API HTTP para exportar rutas, horas y costes,
+            y para leer pedidos y vehículos desde tu sistema.</p></div>
+        </details>
+        <details class="faq__item">
+          <summary>¿Podemos ver antes los resultados?<i></i></summary>
+          <div class="faq__body"><p>Sí, en una demo te mostramos la plataforma con tus
+            propios datos y te entregamos un informe con el ahorro estimado.</p></div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA FINAL
+       ======================================================== -->
+  <section class="cta" id="contacto">
+    <!-- Resplandor: se mueve en parallax con el scroll -->
+    <span class="cta__glow" data-parallax="0.16" aria-hidden="true"></span>
+    <div class="wrap cta__inner">
+      <h2 class="cta__title reveal" data-split>Prueba tus propias rutas esta misma semana.</h2>
+      <p class="cta__sub reveal" style="--d:.08s">Cuéntanos cuántos pedidos mueves al día y te
+        montamos una demo con datos parecidos a los tuyos, junto con una propuesta de precio
+        adaptada a tu empresa.</p>
+
+      <!-- Si FORM_ACTION está vacío en .env el formulario no envía nada: avisa y listo.
+           Con un valor (Formspree, tu API…) se envía solo a ese servicio. -->
+      <form class="cta__form reveal" style="--d:.16s" id="form-contacto" action="{{FORM_ACTION}}" method="post" novalidate>
+        <label class="sr-only" for="email">Tu email</label>
+        <input class="field" type="email" id="email" name="email" placeholder="tu@empresa.com" required>
+        <button class="btn btn--primary" type="submit">Pedir demo</button>
+        <p class="cta__ok" id="form-ok" role="status" hidden>{{FORM_MESSAGE}}</p>
+      </form>
+
+      <p class="cta__alt reveal" style="--d:.22s">¿Prefieres escribir?
+        <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============================================================
+     PIE DE PÁGINA — TODO ESTE BLOQUE SE LLENA SOLO DESDE .env
+     ============================================================ -->
+<footer class="footer">
+  <div class="wrap footer__inner">
+
+    <div class="footer__brand">
+      <span class="nav__mark" aria-hidden="true">
+        <svg viewBox="0 0 32 32" width="18" height="18" fill="none">
+          <path d="M6 24c4.5 0 5.5-16 10-16s5.5 16 10 16" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="6" cy="24" r="3" fill="currentColor"/><circle cx="26" cy="24" r="3" fill="currentColor"/>
+        </svg>
+      </span>
+      <b>{{APP_NAME}}</b>
+      <p>Software de optimización de rutas para equipos de reparto.</p>
+    </div>
+
+    <nav class="footer__col" aria-label="Producto">
+      <h4>producto</h4>
+      <a href="#producto">Funciones</a>
+      <a href="#como">Cómo funciona</a>
+      <a href="#faq">Preguntas</a>
+    </nav>
+
+    <nav class="footer__col" aria-label="Recursos">
+      <h4>recursos</h4>
+      <a href="{{URL_DOCS}}">Documentación</a>
+      <a href="{{URL_API}}">API</a>
+      <a href="{{URL_STATUS}}">Estado del servicio</a>
+      <a href="{{URL_BLOG}}">Blog</a>
+    </nav>
+
+    <address class="footer__col footer__contact">
+      <h4>contacto</h4>
+      <a href="mailto:{{EMAIL}}">{{EMAIL}}</a>
+      <a href="tel:{{PHONE_E164}}">{{PHONE}}</a>
+      <span>{{ADDRESS}}<br>{{POSTCODE}} {{CITY}}, {{COUNTRY}}</span>
+      <div class="footer__social">
+        <a href="{{LINKEDIN_URL}}" aria-label="LinkedIn"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3V9zm7 0h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05C21.6 8.65 22 11 22 14v7h-4v-6.2c0-1.48-.03-3.4-2.07-3.4-2.07 0-2.39 1.62-2.39 3.29V21h-4V9z"/></svg></a>
+        <a href="{{X_URL}}" aria-label="X"><svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M17.5 3h3l-6.6 7.5L21.8 21h-6l-4.7-6.1L5.7 21h-3l7.1-8.1L2.5 3h6.1l4.3 5.6L17.5 3zm-1 16h1.7L7.6 4.8H5.8L16.5 19z"/></svg></a>
+        <a href="{{GITHUB_URL}}" aria-label="GitHub"><svg viewBox="0 0 24 24" width="17" height="17" fill="currentColor"><path d="M12 2a10 10 0 00-3.2 19.5c.5.1.7-.2.7-.5v-1.8c-2.8.6-3.4-1.2-3.4-1.2-.5-1.2-1.1-1.5-1.1-1.5-.9-.6.1-.6.1-.6 1 .1 1.5 1 1.5 1 .9 1.5 2.3 1.1 2.9.8.1-.7.4-1.1.6-1.3-2.2-.3-4.6-1.1-4.6-5 0-1.1.4-2 1-2.7-.1-.3-.4-1.3.1-2.6 0 0 .8-.3 2.7 1a9.4 9.4 0 015 0c1.9-1.3 2.7-1 2.7-1 .5 1.3.2 2.3.1 2.6.6.7 1 1.6 1 2.7 0 3.9-2.4 4.7-4.6 5 .4.3.7.9.7 1.9v2.8c0 .3.2.6.7.5A10 10 0 0012 2z"/></svg></a>
+      </div>
+    </address>
+  </div>
+
+  <div class="wrap footer__bottom">
+    <span>© {{YEAR}} {{COMPANY_NAME}}</span>
+    <div class="footer__legal">
+      <a href="{{URL_LEGAL}}">Aviso legal</a>
+      <a href="{{URL_PRIVACY}}">Privacidad</a>
+      <a href="{{URL_COOKIES}}">Cookies</a>
+    </div>
+  </div>
+</footer>
+
+<button class="to-top" id="toTop" aria-label="Volver arriba">
+  <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><path d="M8 13V3M4 7l4-4 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+</button>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
