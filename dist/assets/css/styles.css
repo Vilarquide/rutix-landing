@@ -769,6 +769,36 @@ summary::-webkit-details-marker{display:none}
 .manifest__num.is-done{animation:pop .5s var(--ease-out)}
 
 /* ---------------------------------------------------------------- */
+/* 15b. PANTALLAS (capturas reales) Y MÓDULO DE ALMACÉN              */
+/* ---------------------------------------------------------------- */
+.shots{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.shot{margin:0;display:flex;flex-direction:column}
+.shot--wide{grid-column:span 2}
+.shot--wide .panel__body{aspect-ratio:21/9}
+.shot .panel__body{background:var(--asphalt)}
+.shot figcaption{
+  padding:14px 16px;border-top:1px solid var(--line-dark-2);
+  font-size:13.5px;line-height:1.5;color:var(--d-muted);
+}
+.head .kicker{margin-bottom:14px}
+
+.flujo{list-style:none;display:grid;gap:8px}
+.flujo li{
+  display:flex;align-items:center;gap:12px;
+  padding:10px 14px;border:1px solid var(--line);border-radius:var(--r-s);
+  background:var(--paper-2);font-size:14px;color:var(--ink-2);
+}
+.flujo b{font-family:var(--font-mono);font-size:11.5px;font-weight:500;color:var(--dim)}
+.flujo__ruta{border-color:rgba(245,165,36,.5);background:rgba(245,165,36,.1)}
+.flujo__ruta b{color:var(--amber-ink)}
+
+.mini-abc{display:flex;flex-direction:column;gap:6px;font-family:var(--font-mono);font-size:11.5px}
+.mini-abc span{padding:7px 10px;border-radius:var(--r-xs);color:var(--ink-2);background:var(--paper-3)}
+.mini-abc__a{width:100%;background:rgba(245,165,36,.22)!important}
+.mini-abc__b{width:70%}
+.mini-abc__c{width:45%}
+
+/* ---------------------------------------------------------------- */
 /* 16. RESPONSIVE                                                    */
 /* ---------------------------------------------------------------- */
 @media (max-width:1020px){
@@ -816,6 +846,9 @@ summary::-webkit-details-marker{display:none}
   .wrap{padding-inline:20px}
   .board{grid-template-columns:1fr}
   .cell,.cell--lead,.cell--half,.cell--wide{grid-column:span 1}
+  .shots{grid-template-columns:1fr}
+  .shot--wide{grid-column:span 1}
+  .shot--wide .panel__body{aspect-ratio:16/10}
   .versus{grid-template-columns:1fr}
   .head--center{text-align:left;margin-inline:0}
   .cta__inner{text-align:left}
@@ -875,3 +908,11 @@ summary::-webkit-details-marker{display:none}
   .js .mini-kpi span{height:var(--h) !important}
   .js .mini-flota__bar i{width:var(--w) !important}
 }
+
+/* Captura del módulo de almacén (plano 3D) */
+.cell--shot{grid-column:span 6;padding:0;gap:0;overflow:hidden}
+.cell--shot .panel__body{aspect-ratio:1554/768;background:var(--asphalt)}
+.cell--shot .panel__img{object-fit:contain}
+.cell--shot figcaption{padding:16px 22px;border-top:1px solid var(--line)}
+@media (max-width:1020px){.cell--shot{grid-column:span 2}}
+@media (max-width:760px){.cell--shot{grid-column:span 1}}

@@ -1,9 +1,28 @@
 # Landing page
 
-Landing estática con identidad de “hoja de ruta”: grafito y ámbar, tipografía
+Landing estática de la plataforma RutasAPI, con identidad de “hoja de ruta”: grafito y ámbar, tipografía
 condensada para los titulares, retícula de tablero de despacho y animaciones
 discretas. El nombre de la aplicación y los datos de contacto **no están escritos
 en el HTML**: salen del fichero `.env` y se inyectan al construir la página.
+
+## Qué cuenta la página
+
+Los textos de `index.html` describen las funcionalidades reales del backend
+(`RutasApi`). Si la app cambia, esta lista es la que hay que revisar:
+
+| Bloque | Funcionalidad de la app |
+|---|---|
+| Motor | OR-Tools + OSRM (España, Portugal e Italia); capacidad, ventanas, tiempo de servicio, descansos, coste fijo por vehículo, equilibrado, prioridades de pedido, pedidos fijados a un vehículo, salida/regreso por camión, reoptimización parcial |
+| Entrada | Importación de pedidos desde Excel o plantilla, geocodificación y validación de direcciones, lista de pendientes |
+| Flota | Vehículos con categoría y tipos de carga, requisitos por pedido, estados y disponibilidad |
+| Conductor | Mi ruta de hoy, agenda semanal, enlace a Google Maps, completar paradas, reportar incidencias; el planificador las asigna y resuelve |
+| Números | `/api/comparar` (plan manual vs optimizado, ahorro en km y vehículos) y KPIs de precisión previsto/real |
+| Equipo | Multiempresa, usuarios, roles configurables, invitaciones, JWT |
+| Recogida | Tipo de servicio entrega / recogida / mixta; modo recogida con depósitos intermedios y depósito preferido |
+| Agenda | Agenda por franja horaria con una columna por vehículo y detalle de parada; disponibilidad de vehículos/conductores, asignación de repartidor, sugerencias de ruta para pedidos nuevos |
+| Historial | Optimizaciones guardadas, comparar, duplicar, notas y corrección de coordenadas; precios de carburante oficiales |
+| Almacén (sección propia `#almacen`) | Módulo WMS: almacenes/zonas/ubicaciones, artículos/categorías/presentaciones/lotes, terceros, recepciones (recibir, sugerir ubicación, ubicar), órdenes de salida (reservar, expedir), tareas, expediciones, existencias y movimientos (entrada, salida, traslado, ajuste, estado), inventarios (contar, cerrar), incidencias, auditoría, slotting ABC + afinidad, KPIs |
+| Integración | API HTTP con Swagger, Docker, PostgreSQL |
 
 ## Puesta en marcha
 
@@ -64,11 +83,15 @@ Mete los archivos en `assets/img/` con estos nombres y listo:
 
 | Archivo | Para qué | Si no existe |
 |---|---|---|
-| `hero-dashboard.png` | Captura grande del hero | Se ve un mockup vectorial animado, con las rutas dibujándose solas |
+| `hero-dashboard.png` | Captura grande del hero (planificador con rutas) | Se ve un mockup vectorial animado, con las rutas dibujándose solas |
+| `planificador.png` | Sección Pantallas: planificador con rutas calculadas (ancho) | Mockup vectorial |
+| `planificador-pre.png` | Sección Pantallas: planificador antes de optimizar | Mockup vectorial |
+| `agenda.png` | Sección Pantallas: agenda por franja horaria | Mockup vectorial |
 | `favicon.svg` | Icono de la pestaña | Se usa el que ya viene |
 
 Recomendado para la captura del hero: **1600×1000 px** (proporción 16:10), en
-PNG o WebP. Cualquier resolución sirve; la página la recorta y la centra sola.
+PNG o WebP. Para `planificador.png` (formato ancho) mejor **21:9**, por ejemplo
+1680×720 px. Cualquier resolución sirve; la página la recorta y la centra sola.
 
 Para más imágenes, donde quieras dentro del `index.html`:
 
@@ -96,7 +119,15 @@ bloques inventados que conviene cambiar por datos reales:
   la cita). Si no tienes clientes aún, borra esa sección entera.
 - Las preguntas frecuentes, incluido el precio: como el presupuesto es por
   empresa, la respuesta dice que se prepara a medida.
-- La sección “La diferencia” (planificación manual frente a la plataforma).
+- La sección “Lo que cuesta planificar a mano” (planificación manual frente a la plataforma).
+- El tablero de **Producto**: una tarjeta por bloque funcional (motor, entrada,
+  flota, conductor, números, equipo, recogida, agenda, historial, almacén,
+  integración). Si añades o quitas un módulo en la app, añade o quita su tarjeta.
+- La sección **Pantallas** (`#pantallas`): tres capturas reales con su pie. Cambia
+  los pies si cambian las pantallas.
+- La sección **Almacén** (`#almacen`): el módulo WMS con su propio tablero de
+  tarjetas. Si no vendes el módulo, borra la sección, su enlace del menú y la
+  tarjeta “almacén” de Producto.
 
 Si no quieres alguna sección, bórrala: borra su `<section>…</section>` y su
 enlace en el menú (`.nav__links` y `.nav__menu`). El resto se ajusta solo.

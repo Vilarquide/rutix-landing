@@ -1,0 +1,18 @@
+# Datos reales de la landing: nunca se suben. Usa .env.example como plantilla.
+.env
+
+# Salida del build
+dist/
+
+# Visual Studio / editores
+.vs/
+*.user
+*.suo
+
+# Node (no hay dependencias, pero por si acaso)
+node_modules/
+npm-debug.log*
+
+# Sistema
+.DS_Store
+Thumbs.db

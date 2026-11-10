@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>{{APP_NAME}} — Rutas de reparto optimizadas al mínimo coste</title>
+<title>{{APP_NAME}} — Rutas, flota, conductores y almacén en una sola plataforma</title>
 <meta name="description" content="{{META_DESCRIPTION}}">
 
 <!-- ============================================================
@@ -14,7 +14,7 @@
 <meta name="color-scheme" content="light">
 <link rel="icon" href="{{FAVICON}}" type="image/svg+xml">
 <meta property="og:type" content="website">
-<meta property="og:title" content="{{APP_NAME}} — Rutas de reparto optimizadas">
+<meta property="og:title" content="{{APP_NAME}} — Optimización de rutas, flota y almacén">
 <meta property="og:description" content="{{OG_DESCRIPTION}}">
 <meta property="og:image" content="{{OG_IMAGE}}">
 <meta name="twitter:card" content="summary_large_image">
@@ -54,6 +54,8 @@
 
     <nav class="nav__links" aria-label="Secciones">
       <a href="#producto">Producto</a>
+      <a href="#pantallas">Pantallas</a>
+      <a href="#almacen">Almacén</a>
       <a href="#como">Cómo funciona</a>
       <a href="#faq">Preguntas</a>
     </nav>
@@ -70,6 +72,8 @@
 
   <div class="nav__menu" id="menu-movil">
     <a href="#producto">Producto</a>
+    <a href="#pantallas">Pantallas</a>
+    <a href="#almacen">Almacén</a>
     <a href="#como">Cómo funciona</a>
     <a href="#faq">Preguntas</a>
     <a href="#contacto">Contacto</a>
@@ -87,17 +91,19 @@
       <div class="hero__grid">
 
         <div class="hero__copy">
-          <p class="kicker reveal">optimización de rutas de reparto</p>
+          <p class="kicker reveal">optimización de rutas · reparto y recogida · flota · almacén</p>
 
           <!-- CAMBIA: titular -->
           <h1 class="hero__title reveal" data-split>
-            De tu Excel a la ruta óptima.
+            De tu Excel a la ruta óptima. Y de la ruta, al camión.
           </h1>
 
           <p class="hero__lead reveal" style="--d:.12s">
-            Sube el archivo de pedidos y obtén las rutas de tu flota
-            <strong>sobre carretera real</strong>: capacidades, ventanas horarias
-            y coste por camión respetados. De horas de planificación a un clic.
+            Importa los pedidos y obtén las rutas de tu flota
+            <strong>sobre carretera real</strong>: capacidad, ventanas horarias,
+            tipo de vehículo, descansos y coste por camión respetados. Después, el
+            conductor marca cada parada desde el móvil, el planificador ve las
+            incidencias y la dirección mide el ahorro frente al plan de siempre.
           </p>
 
           <div class="hero__cta reveal" style="--d:.18s">
@@ -107,7 +113,7 @@
           </div>
 
           <p class="hero__note reveal" style="--d:.24s">
-            sin permanencia · se instala en tu servidor · los datos no salen de tu infraestructura
+            sin permanencia · se instala en tu servidor · mapas de España, Portugal e Italia · multiempresa con roles
           </p>
         </div>
 
@@ -119,13 +125,13 @@
         <div class="panel reveal" data-parallax="0.05">
           <div class="panel__bar">
             <i></i><i></i><i></i>
-            <b>planificador · rutas del día</b>
-            <span class="panel__tag">4 vehículos</span>
+            <b>planificador de rutas · 25/09/2026</b>
+            <span class="panel__tag">81 servicios · 20 vehículos</span>
           </div>
 
           <div class="panel__body">
             <span class="panel__ph">Coloca aquí tu captura · <b>hero-dashboard.png</b></span>
-            <img class="panel__img" src="assets/img/hero-dashboard.png" alt="Captura de la plataforma con el mapa de rutas optimizadas">
+            <img class="panel__img" src="assets/img/hero-dashboard.png" alt="Planificador de rutas: lista de servicios, flota del día y mapa con las rutas optimizadas de tres vehículos">
 
             <!-- Mockup vectorial animado: se ve si todavía no has puesto la imagen -->
             <svg class="panel__art" viewBox="0 0 900 560" fill="none" role="img" aria-label="Vista previa del mapa de rutas">
@@ -193,7 +199,7 @@
           <span class="manifest__label">menos kilómetros por ruta</span>
         </div>
         <div class="manifest__item">
-          <span class="manifest__num" data-count="9" data-suffix=" s">0 s</span>
+          <span class="manifest__num" data-count="15" data-suffix=" s">0 s</span>
           <span class="manifest__label">para resolver cientos de pedidos</span>
         </div>
         <div class="manifest__item">
@@ -215,9 +221,10 @@
   <section class="section" id="producto">
     <div class="wrap">
       <header class="head reveal">
-        <h2 class="head__title" data-split>Todo lo que hace falta para planificar el reparto del día.</h2>
+        <h2 class="head__title" data-split>Todo lo que hace falta para planificar, ejecutar y medir el reparto.</h2>
         <p class="head__sub">Un solo lugar: importas los pedidos, el motor calcula la mejor
-          distribución de flota y el equipo trabaja sobre ella.</p>
+          distribución de flota, el conductor la ejecuta desde el móvil y la dirección
+          comprueba cuánto se ha ahorrado.</p>
       </header>
 
       <div class="board">
@@ -226,13 +233,18 @@
           <div>
             <span class="cell__label">motor</span>
             <h3 class="cell__title" style="margin-top:12px">Rutas reales, no aproximaciones.</h3>
-            <p class="cell__text" style="margin-top:12px">Las distancias salen de la carretera real, no de
-              líneas rectas entre puntos. El solver reparte la carga entre camiones respetando
-              capacidad, ventanas horarias y el coste de cada vehículo.</p>
+            <p class="cell__text" style="margin-top:12px">Las distancias salen de la carretera real (OSRM sobre el mapa de
+              España, Portugal e Italia), no de líneas rectas. El solver de Google OR-Tools reparte la carga entre
+              camiones respetando capacidad, ventanas horarias, tiempo de servicio en cada parada,
+              descansos del conductor y el coste fijo de sacar cada vehículo.</p>
             <ul class="ticks" data-stagger style="margin-top:20px">
-              <li>Matriz de distancias sobre el mapa de tu zona</li>
-              <li>Coste por camión, no solo kilómetros</li>
-              <li>Rutas equilibradas entre conductores</li>
+              <li>Matriz de distancias y tiempos sobre carretera real</li>
+              <li>Coste por camión, no solo kilómetros: menos vehículos en ruta</li>
+              <li>Rutas equilibradas entre conductores si lo pides</li>
+              <li>Prioridad por pedido: urgente, importante, medio o bajo</li>
+              <li>Pedidos fijados a un vehículo concreto</li>
+              <li>Salida y regreso distintos por camión (varias naves o desde casa)</li>
+              <li>Reoptimización parcial: solo recalcula lo pendiente y los vehículos libres</li>
             </ul>
           </div>
           <div class="cell__art">
@@ -243,8 +255,10 @@
         <article class="cell reveal" style="--d:.06s">
           <span class="cell__label">entrada</span>
           <h3 class="cell__title">Sube tu Excel y listo.</h3>
-          <p class="cell__text">El mismo archivo de siempre: referencias, clientes,
-            ventanas y peso. Cada fila se valida y te avisa de lo que no se puede servir.</p>
+          <p class="cell__text">El mismo archivo de siempre: referencias, clientes, direcciones,
+            ventanas y peso. O guarda una plantilla con tus servicios habituales y cárgala en un
+            clic. Las direcciones se geocodifican y validan solas; lo dudoso queda en una lista
+            de pendientes para revisar, no se pierde.</p>
           <div class="cell__art">
             <div class="mini-excel" data-stagger aria-hidden="true">
               <div class="mini-excel__row mini-excel__row--head"><span>pedido</span><span>cliente</span><span>kg</span></div>
@@ -258,8 +272,9 @@
         <article class="cell reveal" style="--d:.12s">
           <span class="cell__label">flota</span>
           <h3 class="cell__title">Cada camión con sus límites.</h3>
-          <p class="cell__text">Capacidad, tipo de vehículo, coste por km y turno.
-            Los pedidos que no caben se avisan, no se pierden.</p>
+          <p class="cell__text">Capacidad, categoría (furgoneta, rígido…), tipos de carga
+            (frigorífico, ADR…), turno, descansos y disponibilidad por día. Un pedido solo
+            va en un vehículo que cumpla todo lo que exige.</p>
           <div class="cell__art">
             <div class="mini-flota" aria-hidden="true">
               <div class="mini-flota__row">
@@ -282,10 +297,11 @@
         </article>
 
         <article class="cell cell--wide reveal" style="--d:.18s">
-          <span class="cell__label">seguimiento</span>
-          <h3 class="cell__title">El mapa en vivo, parada a parada.</h3>
-          <p class="cell__text">Hora de llegada de cada entrega, avisos de demora y el
-            estado de cada unidad en una sola pantalla.</p>
+          <span class="cell__label">conductor</span>
+          <h3 class="cell__title">La ruta en el móvil, parada a parada.</h3>
+          <p class="cell__text">Cada conductor ve su ruta de hoy y su agenda de la semana, abre
+            la ruta completa en Google Maps, marca cada parada como completada y reporta
+            incidencias con foto y motivo. El planificador las asigna, sigue y resuelve.</p>
           <div class="cell__art">
             <div class="mini-mapa" aria-hidden="true">
               <svg viewBox="0 0 320 180" fill="none">
@@ -308,8 +324,9 @@
         <article class="cell cell--half reveal" style="--d:.06s">
           <span class="cell__label">dirección</span>
           <h3 class="cell__title">Los números, en una frase.</h3>
-          <p class="cell__text">Coste total, kilómetros, tiempo en ruta y desviación
-            frente a tu planificación manual, siempre comparados.</p>
+          <p class="cell__text">Tu plan manual se reconstruye y se mide con las mismas distancias
+            reales que el optimizado: kilómetros ahorrados, porcentaje y camiones de menos.
+            Y después, KPIs de precisión: lo que predijo el motor frente a lo que tardó de verdad.</p>
           <div class="cell__art">
             <div class="mini-kpi" aria-hidden="true">
               <span style="--h:42%"></span><span style="--h:64%"></span>
@@ -322,11 +339,260 @@
         <article class="cell cell--half reveal" style="--d:.12s">
           <span class="cell__label">equipo</span>
           <h3 class="cell__title">Cada quien con su vista.</h3>
-          <p class="cell__text">Planificador, responsable de flota y conductor: cada rol
-            ve lo que le toca, con agenda e incidencias propias.</p>
+          <p class="cell__text">Varias empresas en la misma instalación, cada una con sus usuarios
+            y roles configurables: planificador, responsable de flota, conductor, almacén.
+            Invitaciones por email y acceso con token; cada uno ve y toca solo lo suyo.</p>
           <div class="cell__art">
             <div class="mini-roles" aria-hidden="true">
-              <span class="rol rol--on">PL</span><span class="rol">FL</span><span class="rol">CO</span>
+              <span class="rol rol--on">PL</span><span class="rol">FL</span><span class="rol">CO</span><span class="rol">AL</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="cell reveal" style="--d:.06s">
+          <span class="cell__label">recogida</span>
+          <h3 class="cell__title">También para recoger, no solo repartir.</h3>
+          <p class="cell__text">Elige el tipo de servicio del día: entrega, recogida o mixta. En
+            recogida, el camión carga en cada punto y, cuando se llena, vacía en el depósito que
+            más le convenga y sigue. Tantas vueltas como haga falta dentro del turno.</p>
+          <div class="cell__art">
+            <ul class="ticks" data-stagger>
+              <li>Entregas y recogidas en la misma ruta</li>
+              <li>Depósito preferido por vehículo</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cell reveal" style="--d:.12s">
+          <span class="cell__label">agenda</span>
+          <h3 class="cell__title">Quién y qué hay disponible cada día.</h3>
+          <p class="cell__text">Agenda por franja horaria con una columna por vehículo: cada parada
+            con su llegada prevista, salida, tiempo de servicio y carga. Disponibilidad de
+            vehículos y conductores, asignación de repartidor y sugerencias de en qué ruta encaja
+            un pedido que llega tarde.</p>
+          <div class="cell__art">
+            <ul class="ticks" data-stagger>
+              <li>Estados de vehículo: taller, baja, reservado…</li>
+              <li>Agenda de hoy por conductor</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cell reveal" style="--d:.18s">
+          <span class="cell__label">historial</span>
+          <h3 class="cell__title">Nada se pierde.</h3>
+          <p class="cell__text">Cada optimización se guarda con sus rutas y paradas. Compárala con
+            otra, duplícala como punto de partida, añade notas o corrige coordenadas de una
+            parada sin volver a empezar.</p>
+          <div class="cell__art">
+            <ul class="ticks" data-stagger>
+              <li>Comparar dos planes guardados</li>
+              <li>Precios de carburante oficiales por municipio</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.06s">
+          <span class="cell__label">almacén</span>
+          <h3 class="cell__title">El almacén, en la misma plataforma.</h3>
+          <p class="cell__text">Módulo WMS completo: desde la recepción hasta la expedición, con
+            stock por ubicación y lote, inventarios y slotting. Lo que sale del almacén es lo que
+            el optimizador pone en ruta.</p>
+          <div class="cell__art">
+            <a class="btn btn--ghost btn--sm" href="#almacen">Ver el módulo de almacén</a>
+          </div>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.12s">
+          <span class="cell__label">integración</span>
+          <h3 class="cell__title">Una API para todo lo anterior.</h3>
+          <p class="cell__text">Todo lo que ves en pantalla existe como API HTTP documentada con
+            Swagger: optimizar, comparar, pedidos, vehículos, agenda, incidencias, historial y
+            almacén. Conéctala a tu ERP o automatiza la planificación diaria.</p>
+          <div class="cell__art">
+            <ul class="ticks" data-stagger>
+              <li>Se despliega con Docker en tu servidor</li>
+              <li>Base de datos PostgreSQL propia</li>
+            </ul>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PANTALLAS — capturas reales de la app
+       Coloca las imágenes en assets/img/ con estos nombres:
+         planificador.png     → planificador con rutas calculadas
+         planificador-pre.png → planificador antes de optimizar
+         agenda.png           → agenda por franja horaria
+       Si falta alguna, se ve un mockup vectorial.
+       ======================================================== -->
+  <section class="section section--alt" id="pantallas">
+    <div class="wrap">
+      <header class="head reveal">
+        <h2 class="head__title" data-split>Así se ve en el día a día.</h2>
+        <p class="head__sub">Capturas reales de la plataforma: el planificador con la flota y el
+          mapa, y la agenda del día con cada parada en su hora.</p>
+      </header>
+
+      <div class="shots">
+        <figure class="shot shot--wide panel reveal">
+          <div class="panel__bar"><i></i><i></i><i></i><b>planificador de rutas · rutas calculadas</b><span class="panel__tag">3 vehículos · 81 servicios</span></div>
+          <div class="panel__body">
+            <span class="panel__ph">Coloca aquí tu captura · <b>planificador.png</b></span>
+            <img class="panel__img" src="assets/img/planificador.png" alt="Planificador de rutas con el mapa de Galicia y tres rutas de colores saliendo del depósito, panel de servicios y flota a la izquierda">
+            <svg class="panel__art" viewBox="0 0 900 460" fill="none" aria-hidden="true">
+              <rect width="900" height="460" fill="#14171c"/>
+              <rect x="0" y="0" width="300" height="460" fill="#1a1e26"/>
+              <rect x="22" y="26" width="256" height="44" rx="6" fill="#232935"/>
+              <rect x="22" y="90" width="256" height="120" rx="6" fill="#232935"/>
+              <rect x="22" y="230" width="256" height="120" rx="6" fill="#232935"/>
+              <rect x="22" y="390" width="256" height="40" rx="6" fill="#2a3444"/>
+              <path d="M560 230 L470 200 L420 250 L380 320 L340 360" stroke="#34d27b" stroke-width="4" stroke-linecap="round"/>
+              <path d="M560 230 L640 180 L720 160 L800 120 L850 130" stroke="#6aa6ff" stroke-width="4" stroke-linecap="round"/>
+              <path d="M560 230 L600 300 L660 360 L700 420" stroke="#ff4fa3" stroke-width="4" stroke-linecap="round"/>
+              <circle cx="560" cy="230" r="9" fill="#f5a524"/>
+            </svg>
+          </div>
+          <figcaption>Tipo de servicio (entrega, recogida, mixta), servicios para planificar, flota de hoy y rutas dibujadas sobre carretera real. Con reoptimización parcial activa solo se recalculan los pendientes.</figcaption>
+        </figure>
+
+        <figure class="shot panel reveal" style="--d:.08s">
+          <div class="panel__bar"><i></i><i></i><i></i><b>planificador · antes de optimizar</b></div>
+          <div class="panel__body">
+            <span class="panel__ph">Coloca aquí tu captura · <b>planificador-pre.png</b></span>
+            <img class="panel__img" src="assets/img/planificador-pre.png" alt="Planificador con los 81 servicios del día marcados en el mapa, aún sin rutas asignadas">
+            <svg class="panel__art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+              <rect width="600" height="400" fill="#14171c"/>
+              <rect x="0" y="0" width="200" height="400" fill="#1a1e26"/>
+              <g fill="#aeb8c9"><circle cx="300" cy="150" r="5"/><circle cx="330" cy="170" r="5"/><circle cx="360" cy="140" r="5"/><circle cx="400" cy="190" r="5"/><circle cx="280" cy="220" r="5"/><circle cx="440" cy="160" r="5"/><circle cx="380" cy="240" r="5"/><circle cx="320" cy="260" r="5"/><circle cx="470" cy="210" r="5"/><circle cx="260" cy="300" r="5"/></g>
+              <circle cx="420" cy="120" r="9" fill="#f5a524"/>
+            </svg>
+          </div>
+          <figcaption>Los pedidos importados sobre el mapa, con su demanda y ventana, listos para elegir flota y pulsar «Optimizar».</figcaption>
+        </figure>
+
+        <figure class="shot panel reveal" style="--d:.16s">
+          <div class="panel__bar"><i></i><i></i><i></i><b>agenda · vie 25/09/2026</b><span class="panel__tag">3 rutas · 70 paradas</span></div>
+          <div class="panel__body">
+            <span class="panel__ph">Coloca aquí tu captura · <b>agenda.png</b></span>
+            <img class="panel__img" src="assets/img/agenda.png" alt="Agenda del día con una columna por vehículo, las paradas colocadas por hora y el detalle de una parada a la derecha">
+            <svg class="panel__art" viewBox="0 0 600 400" fill="none" aria-hidden="true">
+              <rect width="600" height="400" fill="#14171c"/>
+              <g fill="#232935"><rect x="30" y="20" width="130" height="360" rx="4"/><rect x="175" y="20" width="130" height="360" rx="4"/><rect x="320" y="20" width="130" height="360" rx="4"/></g>
+              <g fill="#3b82f6" opacity=".7"><rect x="38" y="70" width="114" height="10" rx="2"/><rect x="38" y="100" width="114" height="10" rx="2"/><rect x="38" y="150" width="114" height="10" rx="2"/><rect x="183" y="80" width="114" height="10" rx="2"/><rect x="183" y="130" width="114" height="10" rx="2"/><rect x="328" y="60" width="114" height="10" rx="2"/><rect x="328" y="110" width="114" height="10" rx="2"/><rect x="328" y="200" width="114" height="10" rx="2"/></g>
+              <rect x="465" y="20" width="115" height="360" rx="4" fill="#1a1e26"/>
+              <rect x="475" y="40" width="95" height="14" rx="2" fill="#f5a524"/>
+            </svg>
+          </div>
+          <figcaption>Una columna por vehículo y las paradas en su franja horaria. Al pulsar una: llegada prevista, salida, servicio, tipo, carga y la secuencia completa de la ruta.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       ALMACÉN — módulo WMS
+       ======================================================== -->
+  <section class="section" id="almacen">
+    <div class="wrap">
+      <header class="head reveal">
+        <p class="kicker">módulo de almacén · WMS</p>
+        <h2 class="head__title" data-split>Del muelle de entrada al camión, sin salir de la plataforma.</h2>
+        <p class="head__sub">Un WMS integrado con las rutas: lo que entra se ubica, lo que se reserva se
+          prepara y lo que se expide es lo que el optimizador reparte. Mismo usuario, mismos roles,
+          misma API.</p>
+      </header>
+
+      <div class="board">
+
+        <article class="cell cell--lead reveal">
+          <div>
+            <span class="cell__label">flujo completo</span>
+            <h3 class="cell__title" style="margin-top:12px">Recepción, ubicación, picking y expedición.</h3>
+            <p class="cell__text" style="margin-top:12px">Cada operación deja su movimiento de stock y su
+              rastro en la auditoría. Las recepciones proponen dónde ubicar; las órdenes de salida reservan
+              existencias, generan tareas para el equipo y terminan en una expedición con estado.</p>
+            <ul class="ticks" data-stagger style="margin-top:20px">
+              <li>Recepciones: recibir, sugerir ubicación, ubicar o cancelar</li>
+              <li>Órdenes de salida: reservar, preparar, expedir</li>
+              <li>Tareas de almacén asignables a operarios y completables desde el móvil</li>
+              <li>Expediciones con seguimiento de estado</li>
+            </ul>
+          </div>
+          <div class="cell__art">
+            <ol class="flujo" data-stagger aria-hidden="true">
+              <li><b>01</b>Recepción</li>
+              <li><b>02</b>Ubicación</li>
+              <li><b>03</b>Reserva</li>
+              <li><b>04</b>Picking</li>
+              <li><b>05</b>Expedición</li>
+              <li class="flujo__ruta"><b>06</b>Ruta optimizada</li>
+            </ol>
+          </div>
+        </article>
+
+        <!-- CAPTURA DEL MÓDULO DE ALMACÉN: assets/img/almacen-3d.png -->
+        <figure class="cell cell--shot panel reveal" style="--d:.04s">
+          <div class="panel__bar"><i></i><i></i><i></i><b>almacén · plano 3D</b><span class="panel__tag">80 × 50 × 10 m · 4 estanterías · 98 huecos</span></div>
+          <div class="panel__body">
+            <span class="panel__ph">Coloca aquí tu captura · <b>almacen-3d.png</b></span>
+            <img class="panel__img" src="assets/img/almacen-3d.png" alt="Módulo de almacén: KPIs, buscador de artículo y plano 3D de la nave con estanterías en modo edición" loading="lazy">
+          </div>
+          <figcaption class="cell__text">KPIs de ocupación, recepciones, tareas e incidencias en la cabecera. Debajo, el plano 3D de tu nave: localiza un artículo por SKU, colorea por ocupación o caducidad y, en modo edición, arrastra y gira estanterías, zonas y muelles.</figcaption>
+        </figure>
+
+        <article class="cell reveal" style="--d:.06s">
+          <span class="cell__label">estructura</span>
+          <h3 class="cell__title">Almacenes, zonas y ubicaciones.</h3>
+          <p class="cell__text">Tantos almacenes como necesites, cada uno con sus zonas y ubicaciones.
+            El stock se conoce por ubicación, artículo y lote, con su estado: disponible, reservado,
+            bloqueado, en cuarentena.</p>
+        </article>
+
+        <article class="cell reveal" style="--d:.12s">
+          <span class="cell__label">artículos</span>
+          <h3 class="cell__title">Artículos, lotes y presentaciones.</h3>
+          <p class="cell__text">Categorías, varias presentaciones por artículo (unidad, caja, palé), lotes
+            con caducidad y terceros (proveedores y clientes). Todo lo que hace falta para una trazabilidad
+            real.</p>
+        </article>
+
+        <article class="cell reveal" style="--d:.18s">
+          <span class="cell__label">stock</span>
+          <h3 class="cell__title">Movimientos con motivo.</h3>
+          <p class="cell__text">Entradas, salidas, traslados entre ubicaciones y ajustes, siempre con su
+            histórico. Cambia el estado de una existencia sin perder de dónde venía.</p>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.06s">
+          <span class="cell__label">inventarios</span>
+          <h3 class="cell__title">Contar sin parar el almacén.</h3>
+          <p class="cell__text">Abre un inventario por zona o almacén, registra los recuentos, ciérralo y
+            deja que las diferencias se conviertan en ajustes. Las incidencias de almacén (roturas,
+            faltas, errores de ubicación) se registran y se siguen hasta resolverlas.</p>
+          <div class="cell__art">
+            <ul class="ticks" data-stagger>
+              <li>Inventarios: abrir, contar, cerrar o cancelar</li>
+              <li>Incidencias con estado y responsable</li>
+              <li>Auditoría de quién hizo qué y cuándo</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="cell cell--half reveal" style="--d:.12s">
+          <span class="cell__label">inteligencia</span>
+          <h3 class="cell__title">Slotting ABC y KPIs de almacén.</h3>
+          <p class="cell__text">El sistema clasifica los artículos por demanda (A/B/C) y detecta cuáles
+            salen juntos para proponer dónde colocarlos y acortar los recorridos de picking. KPIs de
+            ocupación, rotación y stock por almacén, siempre a la vista.</p>
+          <div class="cell__art">
+            <div class="mini-abc" aria-hidden="true">
+              <span class="mini-abc__a">A · 20% artículos · 80% salidas</span>
+              <span class="mini-abc__b">B · 30% · 15%</span>
+              <span class="mini-abc__c">C · 50% · 5%</span>
             </div>
           </div>
         </article>

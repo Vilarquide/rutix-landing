@@ -18,8 +18,8 @@ const PUERTO = Number(process.env.PORT) || 4321;
 /* Valores por defecto de las variables opcionales                   */
 /* ---------------------------------------------------------------- */
 const POR_DEFECTO = {
-  META_DESCRIPTION: 'Sube tu Excel y obtén las rutas de reparto óptimas de tu flota.',
-  OG_DESCRIPTION: 'Optimización de rutas de reparto para equipos de logística.',
+  META_DESCRIPTION: 'Rutas de reparto y recogida optimizadas sobre carretera real, app de conductor con incidencias, agenda de flota, comparativa de ahorro y módulo de almacén. Se instala en tu servidor.',
+  OG_DESCRIPTION: 'Optimización de rutas, gestión de flota y almacén para equipos de logística.',
   OG_IMAGE: 'assets/img/og-image.png',
   FAVICON: 'assets/img/favicon.svg',
   FORM_ACTION: '',
