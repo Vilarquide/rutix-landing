@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="r1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffc457"/><stop offset="1" stop-color="#f5a524"/>
+    </linearGradient>
+    <linearGradient id="r2" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#34d27b"/><stop offset="1" stop-color="#12a150"/>
+    </linearGradient>
+    <linearGradient id="r3" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6aa6ff"/><stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="r4" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#b18cff"/><stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#f5a524" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#f5a524" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1200" height="630" fill="#14171c"/>
+
+  <g stroke="#242b35" stroke-width="1" opacity="0.55">
+    <path d="M0 105h1200M0 210h1200M0 315h1200M0 420h1200M0 525h1200"/>
+    <path d="M100 0v630M200 0v630M300 0v630M400 0v630M500 0v630M600 0v630M700 0v630M800 0v630M900 0v630M1000 0v630M1100 0v630"/>
+  </g>
+
+  <circle cx="920" cy="330" r="300" fill="url(#glow)"/>
+
+  <g transform="translate(80,72)">
+    <path d="M4 26c7 0 8.5-24 15.5-24S28 26 35 26" stroke="#f5a524" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <circle cx="4" cy="26" r="4.2" fill="#f5a524"/>
+    <circle cx="35" cy="26" r="4.2" fill="#f5a524"/>
+    <text x="58" y="33" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="30" font-weight="700" fill="#ffffff" letter-spacing="0.5">RutasPro</text>
+  </g>
+
+  <text x="80" y="228" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="20" font-weight="600" fill="#f5a524" letter-spacing="5">OPTIMIZACIÓN DE RUTAS DE REPARTO</text>
+
+  <text x="78" y="330" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#ffffff" letter-spacing="-2">De tu Excel a la</text>
+  <text x="78" y="412" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="76" font-weight="700" fill="#f5a524" letter-spacing="-2">ruta óptima.</text>
+
+  <text x="80" y="474" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#aab3c0">Capacidades, ventanas horarias y coste por camión,</text>
+  <text x="80" y="508" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="25" font-weight="400" fill="#aab3c0">resueltos en segundos.</text>
+
+  <text x="80" y="580" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="17" font-weight="500" fill="#6f7a8a" letter-spacing="1.5">SOFTWARE DE PLANIFICACIÓN DE FLOTAS</text>
+
+  <g>
+    <rect x="706" y="132" width="418" height="366" rx="16" fill="#1b2027" stroke="#2a3340" stroke-width="1.5"/>
+    <rect x="706" y="132" width="418" height="44" rx="16" fill="#20262f"/>
+    <rect x="706" y="158" width="418" height="18" fill="#20262f"/>
+    <circle cx="730" cy="154" r="5" fill="#3a4350"/>
+    <circle cx="748" cy="154" r="5" fill="#3a4350"/>
+    <circle cx="766" cy="154" r="5" fill="#3a4350"/>
+    <text x="800" y="160" font-family="Helvetica Neue, Helvetica, Arial, sans-serif" font-size="14" font-weight="600" fill="#8b95a3" letter-spacing="1.5">PLANIFICADOR · RUTAS DEL DÍA</text>
+
+    <g stroke="#242b35" stroke-width="1" opacity="0.9">
+      <path d="M706 238h418M706 330h418M706 422h418"/>
+      <path d="M806 176v322M906 176v322M1006 176v322M1106 176v322"/>
+    </g>
+
+    <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M748 468 L820 410 L900 388 L1000 352 L1100 320" stroke="url(#r1)" stroke-width="5"/>
+      <path d="M748 468 L770 360 L850 300 L850 230 L960 214" stroke="url(#r2)" stroke-width="5"/>
+      <path d="M748 468 L790 400 L900 378 L1010 366 L1120 400" stroke="url(#r3)" stroke-width="5"/>
+      <path d="M748 468 L748 392 L820 330 L748 262 L850 210" stroke="url(#r4)" stroke-width="5"/>
+    </g>
+
+    <g>
+      <circle cx="748" cy="468" r="10" fill="#14171c" stroke="#ffffff" stroke-width="3"/>
+      <circle cx="1000" cy="352" r="7" fill="#f5a524" stroke="#14171c" stroke-width="3"/>
+      <circle cx="1100" cy="320" r="7" fill="#f5a524" stroke="#14171c" stroke-width="3"/>
+      <circle cx="850" cy="230" r="7" fill="#12a150" stroke="#14171c" stroke-width="3"/>
+      <circle cx="960" cy="214" r="7" fill="#12a150" stroke="#14171c" stroke-width="3"/>
+      <circle cx="1010" cy="366" r="7" fill="#3b82f6" stroke="#14171c" stroke-width="3"/>
+      <circle cx="1120" cy="400" r="7" fill="#3b82f6" stroke="#14171c" stroke-width="3"/>
+      <circle cx="820" cy="330" r="7" fill="#8b5cf6" stroke="#14171c" stroke-width="3"/>
+      <circle cx="850" cy="210" r="7" fill="#8b5cf6" stroke="#14171c" stroke-width="3"/>
+    </g>
+  </g>
+</svg>

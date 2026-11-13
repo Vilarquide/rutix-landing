@@ -22,6 +22,7 @@ const POR_DEFECTO = {
   OG_DESCRIPTION: 'Optimización de rutas, gestión de flota y almacén para equipos de logística.',
   OG_IMAGE: 'assets/img/og-image.png',
   FAVICON: 'assets/img/favicon.svg',
+  SITE_URL: '',
   FORM_ACTION: '',
   FORM_MESSAGE: '¡Gracias! Te escribimos en breve.',
   LINKEDIN_URL: '',
@@ -75,19 +76,138 @@ function leerEnv(ruta) {
 /* Sustitución de los {{VARIABLE}}                                   */
 /* ---------------------------------------------------------------- */
 /* Los valores se escapan para que sirvan igual en texto y en atributos:
-   ADDRESS='Calle de la "Mayor" 4' no rompe el HTML, se renderiza bien. */
+   ADDRESS='Calle de la "Mayor" 4' no rompe el HTML, se renderiza bien.
+   La forma {{{VARIABLE}}} inyecta el valor sin escapar (solo para JSON-LD). */
 const ESCAPES = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' };
 const escapar = (valor) => valor.replace(/[&<>"]/g, (c) => ESCAPES[c]);
 
 function sustituir(plantilla, vars) {
   const desconocidas = new Set();
 
-  const salida = plantilla.replace(/\{\{([A-Z0-9_]+)\}\}/g, (match, clave) => {
-    if (!(clave in vars)) desconocidas.add(clave);
-    return clave in vars ? escapar(vars[clave]) : match;
+  const salida = plantilla.replace(/\{\{\{([A-Z0-9_]+)\}\}\}|\{\{([A-Z0-9_]+)\}\}/g, (match, crudo, escapado) => {
+    const clave = crudo || escapado;
+    if (!(clave in vars)) {
+      desconocidas.add(clave);
+      return match;
+    }
+    return crudo ? vars[clave] : escapar(vars[clave]);
   });
 
   return { salida, desconocidas };
+}
+
+/* ---------------------------------------------------------------- */
+/* Datos estructurados (schema.org)                                  */
+/* ---------------------------------------------------------------- */
+/* Deben coincidir con las preguntas visibles de la sección #faq.     */
+const FAQ = [
+  ['¿Necesito cambiar mi Excel?',
+   'No. Se importa el archivo con el formato que ya usas. Si alguna columna no se reconoce, la plataforma te avisa y te dice cuál falla.'],
+  ['¿Funciona sin conexión a internet?',
+   'Sí. Puede instalarse en tu propia red o servidor. Los datos de pedidos y rutas nunca salen de tu infraestructura.'],
+  ['¿Cuánto tarda en calcular?',
+   'Con cargas de cientos de pedidos, entre 5 y 20 segundos por optimización. Para mucho más volumen, el cálculo se pone en cola y te avisa cuando está listo.'],
+  ['¿Qué pasa si un pedido no se puede servir?',
+   'Aparece en una lista aparte con el motivo: capacidad, ventana imposible o distancia. Nunca desaparece en silencio.'],
+  ['¿Cuánto cuesta?',
+   'El precio se prepara para cada empresa, según el volumen de pedidos, el número de depósitos y las instalaciones que necesite. Cuéntanos tu caso y te enviamos una propuesta cerrada, sin permanencia.'],
+  ['¿Se integra con nuestro ERP?',
+   'Sí. Hay una API HTTP para exportar rutas, horas y costes, y para leer pedidos y vehículos desde tu sistema.'],
+  ['¿Podemos ver antes los resultados?',
+   'Sí, en una demo te mostramos la plataforma con tus propios datos y te entregamos un informe con el ahorro estimado.'],
+];
+
+function construirJsonLd(vars, baseUrl) {
+  const url = baseUrl ? baseUrl + '/' : undefined;
+  const id = (frag) => (url ? url + '#' + frag : undefined);
+  const publisher = url ? { '@id': id('organization') } : { '@type': 'Organization', name: vars.COMPANY_NAME };
+
+  const sameAs = [vars.LINKEDIN_URL, vars.X_URL, vars.GITHUB_URL].filter((v) => v && v.trim());
+
+  const organizacion = {
+    '@type': 'Organization',
+    '@id': id('organization'),
+    name: vars.COMPANY_NAME,
+    url,
+    logo: baseUrl ? baseUrl + '/assets/img/apple-touch-icon.png' : undefined,
+    email: vars.EMAIL,
+    telephone: vars.PHONE_E164,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: vars.ADDRESS,
+      postalCode: vars.POSTCODE,
+      addressLocality: vars.CITY,
+      addressCountry: vars.COUNTRY,
+    },
+    areaServed: vars.COUNTRY,
+    sameAs: sameAs.length ? sameAs : undefined,
+  };
+
+  const web = {
+    '@type': 'WebSite',
+    '@id': id('website'),
+    url,
+    name: vars.APP_NAME,
+    description: vars.META_DESCRIPTION,
+    inLanguage: 'es-ES',
+    publisher,
+  };
+
+  const app = {
+    '@type': 'SoftwareApplication',
+    '@id': id('app'),
+    name: vars.APP_NAME,
+    applicationCategory: 'BusinessApplication',
+    applicationSubCategory: 'Optimización de rutas de reparto',
+    operatingSystem: 'Web',
+    description: vars.META_DESCRIPTION,
+    url,
+    inLanguage: 'es-ES',
+    publisher,
+    featureList: [
+      'Importación de pedidos desde Excel',
+      'Optimización de rutas con capacidades y ventanas horarias',
+      'Cálculo sobre carretera real',
+      'Planificación de flota y coste por camión',
+      'Seguimiento en el mapa parada a parada',
+      'API HTTP para integrar con el ERP',
+    ],
+  };
+
+  const faq = {
+    '@type': 'FAQPage',
+    '@id': id('faq'),
+    mainEntity: FAQ.map(([pregunta, respuesta]) => ({
+      '@type': 'Question',
+      name: pregunta,
+      acceptedAnswer: { '@type': 'Answer', text: respuesta },
+    })),
+  };
+
+  return JSON.stringify({
+    '@context': 'https://schema.org',
+    '@graph': [organizacion, web, app, faq],
+  }).replace(/</g, '\\u003c');
+}
+
+/* robots.txt y sitemap.xml solo tienen sentido con una URL absoluta. */
+function escribirSeo(vars) {
+  const base = vars.SITE_URL;
+
+  if (base) {
+    const hoy = new Date().toISOString().slice(0, 10);
+    writeFileSync(join(DIST, 'sitemap.xml'),
+      '<?xml version="1.0" encoding="UTF-8"?>\n' +
+      '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' +
+      `  <url>\n    <loc>${base}/</loc>\n    <lastmod>${hoy}</lastmod>\n` +
+      '    <changefreq>monthly</changefreq>\n    <priority>1.0</priority>\n  </url>\n' +
+      '</urlset>\n');
+    writeFileSync(join(DIST, 'robots.txt'),
+      `User-agent: *\nAllow: /\n\nSitemap: ${base}/sitemap.xml\n`);
+  } else {
+    writeFileSync(join(DIST, 'robots.txt'), 'User-agent: *\nAllow: /\n');
+    console.log('  SEO: define SITE_URL (o despliega en Vercel) para canonical absoluto y sitemap.xml.');
+  }
 }
 
 /* ---------------------------------------------------------------- */
@@ -120,6 +240,14 @@ function construir() {
     process.exit(1);
   }
 
+  // URL canónica: SITE_URL del .env o, en Vercel, el dominio de producción.
+  const baseUrl = (vars.SITE_URL || '').trim().replace(/\/+$/, '') ||
+    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '');
+  vars.SITE_URL = baseUrl;
+  vars.CANONICAL = baseUrl ? `${baseUrl}/` : '/';
+  vars.OG_IMAGE_ABS = `${baseUrl ? baseUrl + '/' : ''}${String(vars.OG_IMAGE).replace(/^\/+/, '')}`;
+  vars.JSON_LD = construirJsonLd(vars, baseUrl);
+
   const { salida: conDatos, desconocidas } = sustituir(readFileSync(join(RAIZ, 'index.html'), 'utf8'), vars);
 
   if (desconocidas.size) {
@@ -139,6 +267,7 @@ function construir() {
   mkdirSync(DIST, { recursive: true });
   writeFileSync(join(DIST, 'index.html'), salida);
   copiarAssets();
+  escribirSeo(vars);
 
   console.log(`  ${vars.APP_NAME} → dist/  (${vars.EMAIL} · ${vars.CITY})`);
   if (vacios.length) {
